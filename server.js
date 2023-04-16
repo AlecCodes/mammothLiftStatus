@@ -21,7 +21,7 @@ async function liftLoader(){
 } 
 
 const scheduledJobFunction = cron.schedule('*/2 * * * * *', ()=> {
-    liftLoader().then((data) => console.log(data.MountainAreas))
+    liftLoader().then((data) => console.log(data.MountainAreas.slice(data.MountainAreas.length - 3)))
     console.log("running a task every 2 sec")
 })
 
