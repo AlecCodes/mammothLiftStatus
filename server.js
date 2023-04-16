@@ -9,7 +9,7 @@ const URL = "https://www.mtnpowder.com/feed?resortId=60"
 
 const PORT = process.env.PORT
 const app = express();
-const connection = require('./Models/connection')
+const liftReport = require('./Models/liftReport')
 
 ////////////////////////
 //functions
@@ -20,9 +20,21 @@ async function liftLoader(){
     return data
 } 
 
-const scheduledJobFunction = cron.schedule('*/2 * * * * *', ()=> {
-    liftLoader().then((data) => console.log(data.MountainAreas.slice(data.MountainAreas.length - 3)))
-    console.log("running a task every 2 sec")
+//Chron
+const scheduledJobFunction = cron.schedule('*/20 * * * * *', ()=> {
+    liftLoader().then((data) => {
+
+
+            const MountainAreas = data.MountainAreas.slice(data.MountainAreas.length - 3)
+
+            const liftReportDocument = {
+                lastUpdated: MountainAreas[0].LastUpdate
+            }
+            console.log(liftReportDocument)
+//            console.log(MountainAreas)
+        }
+    )
+    console.log("running a task every 20 sec")
 })
 
 
