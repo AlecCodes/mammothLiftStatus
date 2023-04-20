@@ -21,20 +21,23 @@ async function liftLoader(){
 } 
 
 //Chron
-const scheduledJobFunction = cron.schedule('*/20 * * * * *', ()=> {
+const scheduledJobFunction = cron.schedule('*/2 * * * * *', ()=> {
     liftLoader().then((data) => {
 
 
             const MountainAreas = data.MountainAreas.slice(data.MountainAreas.length - 3)
-
+            //Create a document from data response. Then call Create method of LiftReport Mongoose object starting w lift chair 23 status
             const liftReportDocument = {
-                lastUpdated: MountainAreas[0].LastUpdate
+                lastUpdated: MountainAreas[0].LastUpdate,
+                MainLodge: MountainAreas[0].Lifts,
+                CanyonLodge: MountainAreas[1].Lifts,
+                EagleLodge: MountainAreas[2].Lifts
             }
             console.log(liftReportDocument)
 //            console.log(MountainAreas)
         }
     )
-    console.log("running a task every 20 sec")
+    console.log("running a task every 2 sec")
 })
 
 
