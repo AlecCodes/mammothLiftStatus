@@ -2,6 +2,8 @@
 const express = require('express')
 const cron = require('node-cron')
 require('dotenv').config()
+
+//import fetch into our express app
 const fetch = (...args) => 
     import('node-fetch').then(({default:fetch}) => fetch(...args))
 
@@ -29,12 +31,13 @@ const scheduledJobFunction = cron.schedule('*/2 * * * * *', ()=> {
             //Create a document from data response. Then call Create method of LiftReport Mongoose object starting w lift chair 23 status
             const liftReportDocument = {
                 lastUpdated: MountainAreas[0].LastUpdate,
-                MainLodge: MountainAreas[0].Lifts,
-                CanyonLodge: MountainAreas[1].Lifts,
-                EagleLodge: MountainAreas[2].Lifts
+                chair23: MountainAreas[0].Lifts.filter((element) => element.Name === 'Chair 23')[0].Status
+                // MainLodge: MountainAreas[0].Lifts,
+                // CanyonLodge: MountainAreas[1].Lifts,
+                // EagleLodge: MountainAreas[2].Lifts
             }
             console.log(liftReportDocument)
-//            console.log(MountainAreas)
+
         }
     )
     console.log("running a task every 2 sec")
