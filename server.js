@@ -37,7 +37,8 @@ const scheduledJobFunction = cron.schedule('*/2 * * * * *', ()=> {
                 // EagleLodge: MountainAreas[2].Lifts
             }
             console.log(liftReportDocument)
-
+            liftReport.create(liftReportDocument)
+            
         }
     )
     console.log("running a task every 2 sec")
