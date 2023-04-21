@@ -31,13 +31,32 @@ const scheduledJobFunction = cron.schedule('*/2 * * * * *', ()=> {
             //Create a document from data response. Then call Create method of LiftReport Mongoose object starting w lift chair 23 status
             const liftReportDocument = {
                 lastUpdated: MountainAreas[0].LastUpdate,
-                chair23: MountainAreas[0].Lifts.filter((element) => element.Name === 'Chair 23')[0].Status
+                broadwayExpress: MountainAreas[0].Lifts.filter((element) => element.Name === 'Broadway Express 1')[0].Status,
+                stumpAlleyExpress: MountainAreas[0].Lifts.filter((element) => element.Name === 'Stump Alley Express 2')[0].Status,
+                faceLiftExpress: MountainAreas[0].Lifts.filter((element) => element.Name === 'Face Lift Express 3')[0].Status,
+                unboundExpress: MountainAreas[0].Lifts.filter((element) => element.Name === 'Unbound Express 6')[0].Status,
+                goldRushExpress: MountainAreas[0].Lifts.filter((element) => element.Name === 'Gold Rush Express 10')[0].Status,
+                discoveryExpress: MountainAreas[0].Lifts.filter((element) => element.Name === 'Discovery Express 11')[0].Status,
+                chair12: MountainAreas[0].Lifts.filter((element) => element.Name === 'Chair 12')[0].Status,
+                chair13: MountainAreas[0].Lifts.filter((element) => element.Name === 'Chair 13')[0].Status,
+                chair14: MountainAreas[0].Lifts.filter((element) => element.Name === 'Chair 14')[0].Status,
+                chair23: MountainAreas[0].Lifts.filter((element) => element.Name === 'Chair 23')[0].Status,
+                panoramaLower: MountainAreas[0].Lifts.filter((element) => element.Name === 'Panorama Lower')[0].Status,
+                panoramaUpper: MountainAreas[0].Lifts.filter((element) => element.Name === 'Panorama Upper')[0].Status,
+                rollerCoasterExpress: MountainAreas[1].Lifts.filter((element) => element.Name === 'Roller Coaster Express 4')[0].Status,
+                high5Express: MountainAreas[1].Lifts.filter((element) => element.Name === 'High 5 Express')[0].Status,
+                chair7: MountainAreas[1].Lifts.filter((element) => element.Name === 'Chair 7')[0].Status,
+                chair8: MountainAreas[1].Lifts.filter((element) => element.Name === 'Chair 8')[0].Status,
+                canyonExpress: MountainAreas[1].Lifts.filter((element) => element.Name === 'Canyon Express 16')[0].Status,
+                schoolyardExpress: MountainAreas[1].Lifts.filter((element) => element.Name === 'Schoolyard Express 17')[0].Status,
+                chair20: MountainAreas[1].Lifts.filter((element) => element.Name === 'Chair 20')[0].Status
+
                 // MainLodge: MountainAreas[0].Lifts,
                 // CanyonLodge: MountainAreas[1].Lifts,
                 // EagleLodge: MountainAreas[2].Lifts
             }
             console.log(liftReportDocument)
-            liftReport.create(liftReportDocument)
+//            liftReport.create(liftReportDocument)
             
         }
     )

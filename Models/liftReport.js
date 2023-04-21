@@ -3,7 +3,8 @@ const mongoose = require('./connection')
 
 const liftReportSchema = new mongoose.Schema({
     lastUpdated: String,
-    chair23: String
+    chair23: String,
+    broadwayExpress: String
 })
 
 const liftReport = mongoose.model("liftReport", liftReportSchema)
