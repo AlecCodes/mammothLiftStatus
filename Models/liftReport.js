@@ -3,7 +3,7 @@ const mongoose = require('./connection')
 
 const liftReportSchema = new mongoose.Schema({
     lastUpdated: String,
-    broadwayExpress, String,
+    broadwayExpress: String,
     stumpAlleyExpress: String,
     faceLiftExpress: String,
     unboundExpress: String,
