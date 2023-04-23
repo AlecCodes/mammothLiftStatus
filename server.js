@@ -13,6 +13,7 @@ const PORT = process.env.PORT
 const app = express();
 const liftReport = require('./Models/liftReport')
 
+//const liftLoader = require('./Functions/liftloader')
 ////////////////////////
 //functions
 ////////////////////////
@@ -23,13 +24,14 @@ async function liftLoader(){
 } 
 
 //Chron
-const scheduledJobFunction = cron.schedule('*/2 * * * * *', ()=> {
+const scheduledJobFunction = cron.schedule('*/5 * * * * *', ()=> {
     liftLoader().then((data) => {
 
 
             const MountainAreas = data.MountainAreas.slice(data.MountainAreas.length - 3)
-            //Create a document from data response. Then call Create method of LiftReport Mongoose object starting w lift chair 23 status
+            //Create a document from data response. Then call Create method of LiftReport Mongoose object 
             const liftReportDocument = {
+                reportDate: new Date(),
                 lastUpdated: MountainAreas[0].LastUpdate,
                 broadwayExpress: MountainAreas[0].Lifts.filter((element) => element.Name === 'Broadway Express 1')[0].Status,
                 stumpAlleyExpress: MountainAreas[0].Lifts.filter((element) => element.Name === 'Stump Alley Express 2')[0].Status,
@@ -58,12 +60,12 @@ const scheduledJobFunction = cron.schedule('*/2 * * * * *', ()=> {
                 chair25 : MountainAreas[2].Lifts.filter((element) => element.Name === 'Chair 25')[0].Status,
 
             }
-            console.log(liftReportDocument)
-//            liftReport.create(liftReportDocument)
-            
+//            console.log(liftReportDocument)
+            return liftReportDocument            
         }
     )
-    console.log("running a task every 2 sec")
+    .then(data => liftReport.create(data))
+    console.log("running a task every 5 sec")
 })
 
 
