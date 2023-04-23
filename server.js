@@ -56,13 +56,7 @@ const scheduledJobFunction = cron.schedule('*/2 * * * * *', ()=> {
                 cloudNine : MountainAreas[2].Lifts.filter((element) => element.Name === 'Cloud Nine Express 9')[0].Status,
                 eagleExpress : MountainAreas[2].Lifts.filter((element) => element.Name === 'Eagle Express 15')[0].Status,
                 chair25 : MountainAreas[2].Lifts.filter((element) => element.Name === 'Chair 25')[0].Status,
-                
 
-    
-
-                // MainLodge: MountainAreas[0].Lifts,
-                // CanyonLodge: MountainAreas[1].Lifts,
-                // EagleLodge: MountainAreas[2].Lifts
             }
             console.log(liftReportDocument)
 //            liftReport.create(liftReportDocument)
