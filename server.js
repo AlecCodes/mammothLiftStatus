@@ -53,7 +53,12 @@ const scheduledJobFunction = cron.schedule('*/2 * * * * *', ()=> {
                 chair21: MountainAreas[1].Lifts.filter((element) => element.Name === 'Chair 21')[0].Status,
                 chair22: MountainAreas[1].Lifts.filter((element) => element.Name === 'Chair 22')[0].Status,
                 villageGondola: MountainAreas[1].Lifts.filter((element) => element.Name === 'Village Gondola')[0].Status,
+                cloudNine : MountainAreas[2].Lifts.filter((element) => element.Name === 'Cloud Nine Express 9')[0].Status,
+                eagleExpress : MountainAreas[2].Lifts.filter((element) => element.Name === 'Eagle Express 15')[0].Status,
+                chair25 : MountainAreas[2].Lifts.filter((element) => element.Name === 'Chair 25')[0].Status,
+                
 
+    
 
                 // MainLodge: MountainAreas[0].Lifts,
                 // CanyonLodge: MountainAreas[1].Lifts,
