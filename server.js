@@ -24,7 +24,7 @@ async function liftLoader(){
 } 
 
 //Chron
-const scheduledJobFunction = cron.schedule('*/5 * * * * *', ()=> {
+const scheduledJobFunction = cron.schedule('* 8-16 * * *', ()=> {
     liftLoader().then((data) => {
 
 
@@ -65,7 +65,7 @@ const scheduledJobFunction = cron.schedule('*/5 * * * * *', ()=> {
         }
     )
     .then(data => liftReport.create(data))
-    console.log("running a task every 5 sec")
+    console.log("running a task every hour 8am - 4pm every day")
 })
 
 
