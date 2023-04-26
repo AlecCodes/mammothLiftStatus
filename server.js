@@ -66,6 +66,9 @@ const scheduledJobFunction = cron.schedule('* 8-16 * * *', ()=> {
     )
     .then(data => liftReport.create(data))
     console.log("running a task every hour 8am - 4pm every day")
+}, {
+    scheduled: true,
+    timezone: "America/Los_Angeles"
 })
 
 
