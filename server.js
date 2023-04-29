@@ -60,7 +60,6 @@ const scheduledJobFunction = cron.schedule('* 8-16 * * *', ()=> {
                 chair25 : MountainAreas[2].Lifts.filter((element) => element.Name === 'Chair 25')[0].Status,
 
             }
-//            console.log(liftReportDocument)
             return liftReportDocument            
         }
     )
