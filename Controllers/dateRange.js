@@ -8,9 +8,22 @@ router.get("/", async(req,res) => {
     res.json("GET ROUTE!!!")
 })
 
+//return 1 liftreport by date
+router.get("/:date", async(req,res) => {
+    try{
+        res.json(await liftReport.find({reportDate: req.params.date}))
+    } catch(error){
+        res.status(400).json(error)
+    }
+})
+
+//return range of liftreports
 router.get("/:start/:end", async (req, res) => {
     try{
-        res.json({"start": req.params.start , "end": req.params.end})
+        res.json(await liftReport.find(
+                {reportDate : {$gte: req.params.start , $lte: req.params.end}}
+            ) 
+        )
     } catch(error){
         res.status(400).json(error)
     }
