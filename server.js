@@ -2,6 +2,9 @@
 const express = require('express')
 const cron = require('node-cron')
 require('dotenv').config()
+const dateRangeRouter = require("./Controllers/dateRange")
+const morgan = require('morgan')
+const cors = require('cors')
 
 //import fetch into our express app
 const fetch = (...args) => 
@@ -12,6 +15,16 @@ const URL = "https://www.mtnpowder.com/feed?resortId=60"
 const PORT = process.env.PORT
 const app = express();
 const liftReport = require('./Models/liftReport')
+
+
+
+///////////////////////
+//MIDDLEWARE
+///////////////////////
+
+app.use('/dateRange', dateRangeRouter)
+app.use(express.json())
+app.use(cors())
 
 //const liftLoader = require('./Functions/liftloader')
 ////////////////////////
