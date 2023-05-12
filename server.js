@@ -37,8 +37,7 @@ async function liftLoader(){
 } 
 
 //Chron expression should be '0 8-16 * * *' for once at the top of an hour
-//As of right now it runs each minute 8-4
-const scheduledJobFunction = cron.schedule('* 8-16 * * *', ()=> {
+const scheduledJobFunction = cron.schedule('0 8-16 * * *', ()=> {
     liftLoader().then((data) => {
 
 
