@@ -17,6 +17,9 @@ router.get("/:date", async(req,res) => {
     }
 })
 
+//return all reports from a date onwards
+
+
 //return range of liftreports
 router.get("/:start/:end", async (req, res) => {
     try{
