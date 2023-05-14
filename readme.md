@@ -11,7 +11,8 @@
 
 ### !PROBLEMS!
 - Node Cron is not running once deployed on render.com. This is likely because it's not using the right timezone at runtime
-- It's pulling the wrong date as well
+    - Changing the TZ environment variable to LA time may have solved this
+- It's pulling the wrong date as well for the lift report date (Server.js line 47). As of rn it's pulling the UTC time for reportdate. Perhaps we can just have our frontend convert this to the client's time?
 
 
 ### Ideas
