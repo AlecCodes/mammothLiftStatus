@@ -1,3 +1,7 @@
+const fetch = (...args) => 
+    import('node-fetch').then(({default:fetch}) => fetch(...args))
+
+
 function dataCleaner(data){
     const MountainAreas = data.MountainAreas.slice(data.MountainAreas.length - 4, data.MountainAreas.length -1)
     const liftReportDocument = {
@@ -34,4 +38,11 @@ function dataCleaner(data){
     return liftReportDocument            
 }
 
-module.exports = dataCleaner
+
+async function liftLoader(URL){
+    const response = await fetch(URL)
+    const data = await response.json()
+    return data
+} 
+
+module.exports = {liftLoader, dataCleaner}
