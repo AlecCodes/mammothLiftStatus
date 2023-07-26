@@ -33,11 +33,11 @@ app.use(cors())
 
 
 //Chron expression should be '0 8-16 * * *' for once at the top of an hour
-const scheduledJobFunction = cron.schedule('*/5 * * * * *', ()=> {
+const scheduledJobFunction = cron.schedule('0 8-16 * * *', ()=> {
     liftLoader(URL).then( (data) => dataCleaner(data))
 // add document to db
-//    .then(data => liftReport.create(data))
-    console.log("running a task every 5 sec")
+    .then(data => liftReport.create(data))
+    console.log("running a task every hour 8-4pm")
 }, {
     scheduled: true,
     timezone: "America/Los_Angeles"
