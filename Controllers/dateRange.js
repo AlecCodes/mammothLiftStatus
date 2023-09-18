@@ -5,7 +5,7 @@ const router = express.Router();
 
 
 router.get("/", async(req,res) => {
-    res.json("GET ROUTE!!!")
+    res.json("HELLO WORLD XD !!")
 })
 
 //return 1 liftreport by date
