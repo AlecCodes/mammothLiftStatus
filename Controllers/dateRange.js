@@ -16,7 +16,7 @@ router.get("/today", async (req, res) => {
     console.log(today)
     try{
         res.json(await liftReport.find( {reportDate: {
-            $gte: today.startOf().toDate(),
+            $gte: today.startOf('day').toDate(),
             $lt: moment(today).endOf('day').toDate()
         }} ) )
     } catch(error){
