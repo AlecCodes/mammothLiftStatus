@@ -21,9 +21,9 @@ const {liftLoader, dataCleaner} = require('./Functions/mammothFunctions')
 //MIDDLEWARE
 ///////////////////////
 
+app.use(cors())
 app.use('/dateRange', dateRangeRouter)
 app.use(express.json())
-app.use(cors())
 
 
 //const liftLoader = require('./Functions/liftloader')
