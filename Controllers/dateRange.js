@@ -10,6 +10,16 @@ router.get("/", async(req,res) => {
     res.json("HELLO WORLD XD !!")
 })
 
+//return 1 liftreport by id
+router.get("/:id", async(req,res) => {
+    try{
+        res.json(await liftReport.findById(req.params.id))
+    } catch(error){
+        res.status(400).json(error)
+    }
+})
+
+
 //Today's reports
 router.get("/today", async (req, res) => {
     const today = moment().utc()
@@ -23,16 +33,6 @@ router.get("/today", async (req, res) => {
         res.status(400).json(error)
     }
 
-})
-
-
-//return 1 liftreport by date
-router.get("/:date", async(req,res) => {
-    try{
-        res.json(await liftReport.find({reportDate: req.params.date}))
-    } catch(error){
-        res.status(400).json(error)
-    }
 })
 
 //return all reports from a date onwards
