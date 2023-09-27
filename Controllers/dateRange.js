@@ -10,6 +10,23 @@ router.get("/", async(req,res) => {
     res.json("HELLO WORLD XD !!")
 })
 
+router.get("/getAllByDate/:date" , async (req,res) => {
+    const day = new Date(req.params.date)
+    const dayStart = new Date(day.toISOString().split('T')[0] + 'T00:00:00Z')
+    const dayEnd = new Date(day.toISOString().split('T')[0] + 'T23:59:59Z')
+
+    try {
+        res.json(await liftReport.find({
+            reportDate : {
+                $gte : dayStart,
+                $lte: dayEnd
+            }
+        }))
+    } catch(error){
+        res.status(400).json(error)
+    }
+})
+
 //return 1 liftreport by id
 router.get("/getById/:id", async(req,res) => {
     try{
