@@ -11,7 +11,7 @@ router.get("/", async(req,res) => {
 })
 
 //return 1 liftreport by id
-router.get("/:id", async(req,res) => {
+router.get("/getById/:id", async(req,res) => {
     try{
         res.json(await liftReport.findById(req.params.id))
     } catch(error){
@@ -23,7 +23,7 @@ router.get("/:id", async(req,res) => {
 //Today's reports
 router.get("/today", async (req, res) => {
     const today = moment().utc()
-    console.log(today)
+//    console.log(today)
     try{
         res.json(await liftReport.find( {reportDate: {
             $gte: today.startOf('day').toDate(),
@@ -35,11 +35,23 @@ router.get("/today", async (req, res) => {
 
 })
 
+//return all the dates from a given month/year
+//range from first to last day of month
+router.get("/month/:month/:year", async(req,res) => {
+    const month = new Date()
+    month.setUTCMonth(req.params.month)
+    month.setUTCFullYear(req.params.year)
+    console.log(month)
+    res.json('Month')
+
+}) 
+
+
 //return all reports from a date onwards
 
 
 //return range of liftreports
-router.get("/:start/:end", async (req, res) => {
+router.get("/getRange/:start/:end", async (req, res) => {
     try{
         res.json(await liftReport.find(
                 {reportDate : {$gte: req.params.start , $lte: req.params.end}}
