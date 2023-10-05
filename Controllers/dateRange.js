@@ -2,12 +2,22 @@ const express = require("express");
 const liftReport = require("../Models/liftReport");
 const moment = require('moment')
 moment().format()
+const transformV2 = require("../Functions/transformV2")
 
 const router = express.Router();
 
 
 router.get("/", async(req,res) => {
     res.json("HELLO WORLD XD !!")
+})
+
+router.put("/transform", async(req, res) => {
+    try{
+        transformV2()
+        res.json("Successful transformation")
+    } catch(error){
+        res.status(400).json(error)
+    }
 })
 
 router.get("/getAllByDate/:date" , async (req,res) => {
