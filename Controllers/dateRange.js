@@ -3,7 +3,7 @@ const liftReport = require("../Models/liftReport");
 const moment = require('moment')
 moment().format()
 const transformV2 = require("../Functions/transformV2")
-
+const V2_liftReport = require("../Models/V2_liftReport")
 const router = express.Router();
 
 
@@ -26,7 +26,7 @@ router.get("/getAllByDate/:date" , async (req,res) => {
     const dayEnd = new Date(day.toISOString().split('T')[0] + 'T23:59:59Z')
 
     try {
-        res.json(await liftReport.find({
+        res.json(await V2_liftReport.find({
             reportDate : {
                 $gte : dayStart,
                 $lte: dayEnd
@@ -40,7 +40,7 @@ router.get("/getAllByDate/:date" , async (req,res) => {
 //return 1 liftreport by id
 router.get("/getById/:id", async(req,res) => {
     try{
-        res.json(await liftReport.findById(req.params.id))
+        res.json(await V2_liftReport.findById(req.params.id))
     } catch(error){
         res.status(400).json(error)
     }
@@ -52,7 +52,7 @@ router.get("/today", async (req, res) => {
     const today = moment().utc()
 //    console.log(today)
     try{
-        res.json(await liftReport.find( {reportDate: {
+        res.json(await V2_liftReport.find( {reportDate: {
             $gte: today.startOf('day').toDate(),
             $lt: moment(today).endOf('day').toDate()
         }} ) )
@@ -80,7 +80,7 @@ router.get("/month/:month/:year", async(req,res) => {
 //return range of liftreports
 router.get("/getRange/:start/:end", async (req, res) => {
     try{
-        res.json(await liftReport.find(
+        res.json(await V2_liftReport.find(
                 {reportDate : {$gte: req.params.start , $lte: req.params.end}}
             ) 
         )
