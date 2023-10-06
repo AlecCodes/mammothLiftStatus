@@ -37,7 +37,7 @@ app.use(express.json())
 const scheduledJobFunction = cron.schedule('0 8-16 * * *', ()=> {
     liftLoader(URL).then( (data) => dataCleaner(data))
 // add document to db
-    .then(data => liftReport.create(data))
+    .then(data => V2_liftReport.create(data))
     console.log("running a task every hour 8-4pm")
 }, {
     scheduled: true,
