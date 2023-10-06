@@ -11,14 +11,14 @@ router.get("/", async(req,res) => {
     res.json("HELLO WORLD XD !!")
 })
 
-router.put("/transform", async(req, res) => {
-    try{
-        transformV2()
-        res.json("Successful transformation")
-    } catch(error){
-        res.status(400).json(error)
-    }
-})
+// router.put("/transform", async(req, res) => {
+//     try{
+//         transformV2()
+//         res.json("Successful transformation")
+//     } catch(error){
+//         res.status(400).json(error)
+//     }
+// })
 
 router.get("/getAllByDate/:date" , async (req,res) => {
     const day = new Date(req.params.date)
