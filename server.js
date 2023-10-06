@@ -14,6 +14,7 @@ const URL = "https://www.mtnpowder.com/feed?resortId=60"
 const PORT = process.env.PORT
 const app = express();
 const liftReport = require('./Models/liftReport')
+const V2_liftReport = require('./Models/V2_liftReport')
 const {liftLoader, dataCleaner} = require('./Functions/mammothFunctions')
 
 

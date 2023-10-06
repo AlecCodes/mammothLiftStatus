@@ -1,4 +1,4 @@
-const mongoose = require("../Models/connection")
+const mongoose = require("./connection")
 
 const newLiftReportSchema = new mongoose.Schema({
     reportDate: Date,
@@ -32,4 +32,6 @@ const newLiftReportSchema = new mongoose.Schema({
     }
 })
 
-module.exports = newLiftReportSchema
+const newLiftReport = mongoose.model("V2_liftReport", newLiftReportSchema)
+
+module.exports = newLiftReport
