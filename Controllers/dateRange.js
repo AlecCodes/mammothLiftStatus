@@ -64,13 +64,28 @@ router.get("/today", async (req, res) => {
 
 //return all the dates from a given month/year
 //range from first to last day of month
+//The client will be giving 1-indexed months, so it must be converted to 0 indexed here
 router.get("/month/:month/:year", async(req,res) => {
-    const month = new Date()
-    month.setUTCMonth(req.params.month)
-    month.setUTCFullYear(req.params.year)
-    console.log(month)
-    res.json('Month')
+    const monthStart = new Date()
+    monthStart.setUTCMonth(req.params.month-1)
+    monthStart.setUTCFullYear(req.params.year)
+    monthStart.setUTCDate(1)
 
+    const monthEnd = new Date(monthStart)
+    monthEnd.setUTCDate(1)
+    monthEnd.setUTCMonth(monthEnd.getUTCMonth() + 1)
+    monthEnd.setUTCDate(0)
+    
+
+    console.log(monthStart, monthEnd)
+    try{
+        res.json(await V2_liftReport.find({
+                reportDate: {$gte: monthStart, $lte: monthEnd}
+            }
+        ))
+    }catch(error){
+        res.status(400).json(error)
+    }
 }) 
 
 
