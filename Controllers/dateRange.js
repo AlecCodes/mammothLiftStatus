@@ -22,8 +22,22 @@ router.get("/", async(req,res) => {
 
 router.get("/getAllByDate/:date" , async (req,res) => {
     const day = new Date(req.params.date)
-    const dayStart = new Date(day.toISOString().split('T')[0] + 'T00:00:00Z')
-    const dayEnd = new Date(day.toISOString().split('T')[0] + 'T23:59:59Z')
+    //What if we start this at T:01? SO it skips the previous 4pm bug 
+    const dayStart = new Date(day.toISOString().split('T')[0] + 'T01:00:00Z')
+    //What if we moved this to include T01 for the next day? 
+    //DST will change 8AM western time from T16 to T15
+    //But T00 will be empty for the next day beacause DST is "Fall Back" an hour. so the result array should always end at 4pm
+
+    //increment
+    const nextDay = new Date(day)
+    nextDay.setDate(nextDay.getDate() + 1)
+    const dayEnd = new Date(nextDay.toISOString().split('T')[0] + 'T01:00:00Z')
+    
+
+    const mountainTime = day.toLocaleDateString("en-US", {timeZone: "America/Los_Angeles"})
+    console.log(mountainTime)
+
+    //We need to find a way to query the reportDate field in localeTime instead of in ISO...
 
     try {
         res.json(await V2_liftReport.find({
