@@ -6,7 +6,7 @@ const newLiftReportSchema = new mongoose.Schema({
     snowReport: {
         BaseAreaLast24h : String,
         MidMountainAreaLast24h : String,
-        SummitAreaLast24hr : String
+        SummitAreaLast24h : String
     },
     chairs: {
         broadwayExpress: String,
