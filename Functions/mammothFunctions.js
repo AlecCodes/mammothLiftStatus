@@ -7,6 +7,11 @@ function dataCleaner(data){
     const liftReportDocument = {
         reportDate: new Date(),
         lastUpdated: MountainAreas[0].LastUpdate,
+        snowReport: {
+            BaseAreaLast24h : data.SnowReport.BaseArea.Last24HoursIn,
+            MidMountainAreaLast24h: data.SnowReport.MidMountainArea.Last24HoursIn,
+            SummitAreaLast24h: data.SnowReport.SummitArea.Last24HoursIn
+        },
         chairs : {           
             broadwayExpress: MountainAreas[0].Lifts.filter((element) => element.Name === 'Broadway Express 1')[0].Status,
             stumpAlleyExpress: MountainAreas[0].Lifts.filter((element) => element.Name === 'Stump Alley Express 2')[0].Status,
