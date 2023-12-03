@@ -3,6 +3,7 @@ const express = require('express')
 const cron = require('node-cron')
 require('dotenv').config()
 const dateRangeRouter = require("./Controllers/dateRange")
+const snapShotRouter = require("./Controllers/snapshot")
 const morgan = require('morgan')
 const cors = require('cors')
 
@@ -24,6 +25,7 @@ const {liftLoader, dataCleaner} = require('./Functions/mammothFunctions')
 
 app.use(cors())
 app.use('/dateRange', dateRangeRouter)
+app.use('/snapshot', snapShotRouter)
 app.use(express.json())
 
 
