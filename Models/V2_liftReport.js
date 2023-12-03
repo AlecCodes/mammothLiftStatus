@@ -3,6 +3,11 @@ const mongoose = require("./connection")
 const newLiftReportSchema = new mongoose.Schema({
     reportDate: Date,
     lastUpdated: String,
+    snowReport: {
+        BaseAreaLast24h : String,
+        MidMountainAreaLast24h : String,
+        SummitAreaLast24hr : String
+    },
     chairs: {
         broadwayExpress: String,
         stumpAlleyExpress: String,
