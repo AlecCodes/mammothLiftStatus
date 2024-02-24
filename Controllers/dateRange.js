@@ -20,6 +20,12 @@ router.get("/", async(req,res) => {
 //     }
 // })
 
+router.get("/getReportByISOTime/:time" , async (req, res) => {
+    const isoTime = req.params.time
+    const liftReport = await V2_liftReport.find({reportDate : isoTime})
+    res.send(liftReport)
+})
+
 router.get("/getAllByDate/:date" , async (req,res) => {
     const day = new Date(req.params.date)
     //What if we start this at T:01? SO it skips the previous 4pm bug 
