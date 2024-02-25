@@ -6,9 +6,13 @@ const URL = "https://www.mtnpowder.com/feed?resortId=60"
 
 
 router.get("/", async (req,res) => {
-    liftLoader(URL)
-        .then(data => dataCleaner(data))
-        .then(result => res.json(result))
+
+
+    res.send(await V2_liftReport.findOne().sort({ reportDate : -1 })); 
+
+    // liftLoader(URL)
+    //     .then(data => dataCleaner(data))
+    //     .then(result => res.json(result))
 
 //    res.json("HELLO SNAPSHOT!")
 })

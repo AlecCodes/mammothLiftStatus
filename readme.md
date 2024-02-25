@@ -12,8 +12,7 @@
 
 ### !PROBLEMS!
 
-- We need a new schema to reference in server.js and we need to modify the output of dataCleaner().
-- We need to confirm that the connection string is looking in the V2 collection
+- We need a production and development environment key, so documents aren't created twice
 
 ### Ideas
 - Each hour add an embedded status document to a lift document
